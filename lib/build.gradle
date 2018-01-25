@@ -22,15 +22,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
 
     testCompile 'junit:junit:4.12'
 }
