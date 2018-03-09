@@ -2,9 +2,14 @@ package com.blogspot.mowael.retrofitcore;
 
 import com.blogspot.mowael.retrofitcore.utils.MoConfig;
 
+import java.io.IOException;
+
+import okhttp3.Credentials;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -19,6 +24,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitBase {
 
+
+    private final String CONTENT_TYPE = "Content-Type";
+    private final String AUTHORIZATION = "Authorization";
+    private final String APPLICATION_JSON = "application/json";
+    private final String APPLICATION_FORM_URL = "application/x-www-form-urlencoded";
 
     private static RetrofitBase instance;
 
@@ -172,6 +182,57 @@ public class RetrofitBase {
             instance = new RetrofitBase(baseUrl, factory);
         }
         return instance;
+    }
+
+    /**
+     * @param baseUrl   base url
+     * @param authToken OAuth2 token
+     * @return retrofit base instance
+     */
+    public RetrofitBase initializeWithOAuthToken(String baseUrl, String authToken) {
+        httpClient = null;
+        httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(getAuthInterceptor(authToken));
+        return newInstance(httpClient, baseUrl);
+    }
+
+    public RetrofitBase initializeWithBasicToken(String baseUrl, String username, String password) {
+        httpClient = null;
+        httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(getAuthInterceptor(username, password));
+        return newInstance(httpClient, baseUrl);
+    }
+
+
+    public Interceptor getAuthInterceptor(final String authToken) {
+        return new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request original = chain.request();
+                Request.Builder builder = original.newBuilder().
+                        header(CONTENT_TYPE, APPLICATION_JSON).
+                        header(AUTHORIZATION, "Bearer " + authToken);
+                Request request = builder.build();
+                return chain.proceed(request);
+            }
+        };
+    }
+
+
+    public Interceptor getAuthInterceptor(String username, String password) {
+        final String credentials = Credentials.basic(username, password);
+        return new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request original = chain.request();
+                Request.Builder builder = original.newBuilder()
+                        .header(AUTHORIZATION, credentials).
+                                header(CONTENT_TYPE, APPLICATION_FORM_URL);
+
+                okhttp3.Response response = chain.proceed(builder.build());
+                return response;
+            }
+        };
     }
 
     /**
