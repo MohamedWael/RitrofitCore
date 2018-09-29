@@ -1,4 +1,4 @@
-package com.blogspot.mowael.sampleapp;
+package com.blogspot.mowael.sampleapp.common;
 
 import com.blogspot.mowael.sampleapp.pojo.Athletes;
 
