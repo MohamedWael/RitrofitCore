@@ -3,7 +3,7 @@ publishing {
         library(MavenPublication) {
             setGroupId(GROUPID)
             setArtifactId(ARTIFACTID)
-            version android.defaultConfig.versionName
+            version VERSION
             artifact(bundleRelease)
 
             pom.withXml {
