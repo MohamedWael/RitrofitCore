@@ -3,7 +3,7 @@ apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         minSdkVersion 15
@@ -49,10 +49,12 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.3.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.9.1'
     api 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'mwael:utils:1.0.0-snapshot'
     testImplementation 'junit:junit:4.12'
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+//apply from: 'https://gist.githubusercontent.com/MohamedWael/9ce50d5deab9b5858925d3e1222e3894/raw'
 
 apply from: 'publishToLocalRepo.gradle'

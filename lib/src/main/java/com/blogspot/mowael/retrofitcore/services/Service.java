@@ -2,7 +2,7 @@ package com.blogspot.mowael.retrofitcore.services;
 
 
 import com.blogspot.mowael.retrofitcore.RetrofitBase;
-import com.blogspot.mowael.retrofitcore.utils.Logger;
+import com.blogspot.mowael.utilslibrary.Logger;
 import com.google.gson.Gson;
 
 import java.io.File;

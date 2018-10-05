@@ -1,6 +1,6 @@
 package com.blogspot.mowael.retrofitcore;
 
-import com.blogspot.mowael.retrofitcore.utils.MoConfig;
+import com.blogspot.mowael.retrofitcore.utils.RetrofitBaseConfig;
 
 import java.io.IOException;
 
@@ -164,7 +164,7 @@ public class RetrofitBase {
      */
     public static RetrofitBase initialize(String baseUrl, Converter.Factory factory, boolean debug) {
         if (instance == null) {
-            MoConfig.LOG_TOGGLE = debug;
+            RetrofitBaseConfig.LOG_TOGGLE = debug;
             instance = new RetrofitBase(baseUrl, factory);
         }
         return instance;
@@ -178,7 +178,7 @@ public class RetrofitBase {
      */
     public static RetrofitBase initialize(HttpUrl baseUrl, Converter.Factory factory, boolean debug) {
         if (instance == null) {
-            MoConfig.LOG_TOGGLE = debug;
+            RetrofitBaseConfig.LOG_TOGGLE = debug;
             instance = new RetrofitBase(baseUrl, factory);
         }
         return instance;
@@ -248,7 +248,7 @@ public class RetrofitBase {
 
     public void setUpLogger() {
         if (httpClient != null)
-            if (MoConfig.LOG_TOGGLE) {
+            if (RetrofitBaseConfig.LOG_TOGGLE) {
                 httpClient.addInterceptor(newBodyLogger());
                 httpClient.addInterceptor(newHeaderLogger());
             }
@@ -280,7 +280,7 @@ public class RetrofitBase {
     }
 
     public void enableDebugMode(boolean debug) {
-        MoConfig.LOG_TOGGLE = debug;
+        RetrofitBaseConfig.LOG_TOGGLE = debug;
     }
 
     public void stopRetrofit() {
