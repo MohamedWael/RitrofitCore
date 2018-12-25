@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '28.0.2'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
 
@@ -46,9 +46,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     api 'com.squareup.retrofit2:retrofit:2.4.0'
-    api 'com.squareup.retrofit2:converter-gson:2.3.0'
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.9.1'
-    api 'com.squareup.okhttp3:okhttp:3.10.0'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
     implementation 'mwael:utils:1.0.0-snapshot'
     testImplementation 'junit:junit:4.12'
 }
