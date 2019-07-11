@@ -49,12 +49,12 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.5.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.14.2'
     api 'com.squareup.okhttp3:okhttp:3.14.2'
-    implementation 'mwael:utils:1.0.0-snapshot'
+    implementation project(path: ':utilslibrary')
     testImplementation 'junit:junit:4.12'
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
 //apply from: 'https://gist.githubusercontent.com/MohamedWael/9ce50d5deab9b5858925d3e1222e3894/raw'
 
 apply from: 'publishToLocalRepo.gradle'
