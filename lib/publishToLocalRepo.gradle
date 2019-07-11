@@ -4,7 +4,6 @@ publishing {
             setGroupId(GROUPID)
             setArtifactId(ARTIFACTID)
             version VERSION + '-snapshot'
-            artifact(bundleReleaseAar)
 
             pom.withXml {
                 def dependenciesNode = asNode().appendNode('dependencies')
