@@ -5,7 +5,6 @@ import com.blogspot.mowael.retrofitcore.utils.RetrofitBaseConfig;
 import java.io.IOException;
 
 import okhttp3.Credentials;
-import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -13,6 +12,7 @@ import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -39,12 +39,7 @@ public class RetrofitBase {
 
     private OkHttpClient.Builder httpClient;
 
-
     private RetrofitBase(String baseUrl) {
-        this(baseUrl, GsonConverterFactory.create());
-    }
-
-    private RetrofitBase(HttpUrl baseUrl) {
         this(baseUrl, GsonConverterFactory.create());
     }
 
@@ -55,18 +50,10 @@ public class RetrofitBase {
     private RetrofitBase(String baseUrl, Converter.Factory factory) {
         httpClient = new OkHttpClient.Builder();
         setUpLogger();
-        Retrofit.Builder builder = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(factory);
-        retrofit = builder.client(httpClient.build()).build();
-    }
+        Retrofit.Builder builder = new Retrofit.Builder().baseUrl(baseUrl).
+                addConverterFactory(factory).
+                addCallAdapterFactory(RxJavaCallAdapterFactory.create());
 
-    /**
-     * @param baseUrl base url
-     * @param factory factory converter @see <a href="https://futurestud.io/tutorials/retrofit-2-introduction-to-multiple-converters">Introduction to (Multiple) Converters</a>
-     */
-    private RetrofitBase(HttpUrl baseUrl, Converter.Factory factory) {
-        httpClient = new OkHttpClient.Builder();
-        setUpLogger();
-        Retrofit.Builder builder = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(factory);
         retrofit = builder.client(httpClient.build()).build();
     }
 
@@ -114,27 +101,10 @@ public class RetrofitBase {
 
     /**
      * @param baseUrl base url
-     * @return RetrofitBase instance with GsonConverterFactory converter and disabled debug mode
-     */
-    public static RetrofitBase initialize(HttpUrl baseUrl) {
-        return initialize(baseUrl, false);
-    }
-
-    /**
-     * @param baseUrl base url
      * @param debug   true -> enables debug mode
      * @return RetrofitBase instance with GsonConverterFactory converter
      */
     public static RetrofitBase initialize(String baseUrl, boolean debug) {
-        return initialize(baseUrl, GsonConverterFactory.create(), debug);
-    }
-
-    /**
-     * @param baseUrl base url
-     * @param debug   true -> enables debug mode
-     * @return RetrofitBase instance with GsonConverterFactory converter
-     */
-    public static RetrofitBase initialize(HttpUrl baseUrl, boolean debug) {
         return initialize(baseUrl, GsonConverterFactory.create(), debug);
     }
 
@@ -150,33 +120,10 @@ public class RetrofitBase {
     /**
      * @param baseUrl base url
      * @param factory factory converter @see <a href="https://futurestud.io/tutorials/retrofit-2-introduction-to-multiple-converters">Introduction to (Multiple) Converters</a>
-     * @return RetrofitBase instance with disabled debug mode
-     */
-    public static RetrofitBase initialize(HttpUrl baseUrl, Converter.Factory factory) {
-        return initialize(baseUrl, factory, false);
-    }
-
-    /**
-     * @param baseUrl base url
-     * @param factory factory converter @see <a href="https://futurestud.io/tutorials/retrofit-2-introduction-to-multiple-converters">Introduction to (Multiple) Converters</a>
      * @param debug   true -> enables debug mode
      * @return RetrofitBase instance
      */
     public static RetrofitBase initialize(String baseUrl, Converter.Factory factory, boolean debug) {
-        if (instance == null) {
-            RetrofitBaseConfig.LOG_TOGGLE = debug;
-            instance = new RetrofitBase(baseUrl, factory);
-        }
-        return instance;
-    }
-
-    /**
-     * @param baseUrl base url
-     * @param factory factory converter @see <a href="https://futurestud.io/tutorials/retrofit-2-introduction-to-multiple-converters">Introduction to (Multiple) Converters</a>
-     * @param debug   true -> enables debug mode
-     * @return RetrofitBase instance
-     */
-    public static RetrofitBase initialize(HttpUrl baseUrl, Converter.Factory factory, boolean debug) {
         if (instance == null) {
             RetrofitBaseConfig.LOG_TOGGLE = debug;
             instance = new RetrofitBase(baseUrl, factory);
