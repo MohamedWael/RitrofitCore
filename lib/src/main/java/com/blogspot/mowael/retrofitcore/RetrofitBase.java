@@ -12,7 +12,7 @@ import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -52,7 +52,7 @@ public class RetrofitBase {
         setUpLogger();
         Retrofit.Builder builder = new Retrofit.Builder().baseUrl(baseUrl).
                 addConverterFactory(factory).
-                addCallAdapterFactory(RxJavaCallAdapterFactory.create());
+                addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
         retrofit = builder.client(httpClient.build()).build();
     }
@@ -60,7 +60,8 @@ public class RetrofitBase {
     private RetrofitBase(OkHttpClient.Builder httpClient, String baseUrl, Converter.Factory factory) {
         this.httpClient = httpClient;
         setUpLogger();
-        Retrofit.Builder builder = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(factory);
+        Retrofit.Builder builder = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(factory).
+                addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         retrofit = builder.client(httpClient.build()).build();
     }
 
