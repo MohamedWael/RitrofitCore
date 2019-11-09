@@ -3,14 +3,17 @@ apply plugin: 'maven-publish'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.MohamedWael'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion 17
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0.0"
 
@@ -30,24 +33,6 @@ android {
     }
 }
 
-ext {
-    bintrayRepo = 'retrofitCoreLib' // your repo name
-    bintrayName = 'lib' // has to be same as your library module name
-    publishedGroupId = 'com.blogspot.mowael.retrofitcore' // your module package name
-    libraryName = 'retrofitCoreLib'
-    artifact = 'lib' // has to be same as your library module name
-    libraryDescription = 'Quick initialization of retrofit library'
-    siteUrl = 'https://github.com/MohamedWael/RitrofitCore'
-    gitUrl = 'https://github.com/MohamedWael/RitrofitCore.git'
-    libraryVersion = '1.0.0'
-    developerId = 'mohamedwael'
-    developerName = 'Mohamed Wael'
-    developerEmail = 'imohamedwael@outlook.com'
-    licenseName = 'The Apache Software License, Version 1.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-1.0.txt'
-    allLicenses = ["Apache-1.0"]
-}
-
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.1')
@@ -58,12 +43,6 @@ dependencies {
     api 'com.squareup.okhttp3:okhttp:3.14.2'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation project(path: ':utilslibrary')
+    implementation 'com.github.MohamedWael:UtilsLibrary:1.0.0'
     testImplementation 'junit:junit:4.12'
 }
-
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
-//apply from: 'https://gist.githubusercontent.com/MohamedWael/9ce50d5deab9b5858925d3e1222e3894/raw'
-
-apply from: 'publishToLocalRepo.gradle'
