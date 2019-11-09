@@ -1,12 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
@@ -19,6 +22,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -42,19 +50,20 @@ ext {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.1', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    api 'com.squareup.retrofit2:retrofit:2.5.0'
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.1')
+    api 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api 'com.squareup.retrofit2:converter-gson:2.5.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.14.2'
     api 'com.squareup.okhttp3:okhttp:3.14.2'
-    implementation 'mwael:utils:1.0.0-snapshot'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation project(path: ':utilslibrary')
     testImplementation 'junit:junit:4.12'
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
 //apply from: 'https://gist.githubusercontent.com/MohamedWael/9ce50d5deab9b5858925d3e1222e3894/raw'
 
 apply from: 'publishToLocalRepo.gradle'
