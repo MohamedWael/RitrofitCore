@@ -23,6 +23,11 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: Build debug APK and release APK
+          command: |
+            ./gradlew :sampleapp:assembleDebug
+            ./gradlew :lib:build
 
       # Download and cache dependencies
       - restore_cache:
