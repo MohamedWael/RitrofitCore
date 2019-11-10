@@ -1,4 +1,7 @@
-# RitrofitCore [![](https://jitpack.io/v/MohamedWael/RitrofitCore.svg)](https://jitpack.io/#MohamedWael/RitrofitCore)
+# RitrofitCore 
+
+[![CircleCI](https://circleci.com/gh/MohamedWael/RitrofitCore/tree/master.svg?style=svg)](https://circleci.com/gh/MohamedWael/RitrofitCore/tree/master) 
+[![](https://jitpack.io/v/MohamedWael/RitrofitCore.svg)](https://jitpack.io/#MohamedWael/RitrofitCore)
 
 quick initialization of retrofit 
 
