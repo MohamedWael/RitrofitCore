@@ -26,3 +26,7 @@ dependencies {
     <b>implementation 'com.github.MohamedWael:RitrofitCore:0.0.1'</b>
 }
 </pre>
+
+<a href="https://twitter.com/intent/follow?screen_name=imohamedwael">
+        <img src="https://img.shields.io/twitter/follow/imohamedwael?style=social&logo=twitter"
+            alt="follow on Twitter"></a>
