@@ -7,6 +7,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group = 'com.github.MohamedWael'
+archivesBaseName = 'RitrofitCore'
 
 android {
     compileSdkVersion 29
