@@ -26,7 +26,6 @@ jobs:
       - run:
           name: Build debug APK and release APK
           command: |
-            ls
             chmod +x gradlew
             ./gradlew :sampleapp:assembleDebug
             ./gradlew :lib:build
