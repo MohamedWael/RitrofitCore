@@ -29,6 +29,7 @@ jobs:
             chmod +x gradlew
             ./gradlew :sampleapp:assembleDebug
             ./gradlew :lib:build
+            ./gradlew :lib:install
 
       # Download and cache dependencies
       - restore_cache:
@@ -37,7 +38,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: gradlew dependencies
+      # - run: gradle dependencies
 
       - save_cache:
           paths:
