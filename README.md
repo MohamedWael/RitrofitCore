@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/MohamedWael/RitrofitCore/tree/master.svg?style=svg)](https://circleci.com/gh/MohamedWael/RitrofitCore/tree/master) 
 [![](https://jitpack.io/v/MohamedWael/RitrofitCore.svg)](https://jitpack.io/#MohamedWael/RitrofitCore) 
-![workflow status](https://github.com/MohamedWael/RitrofitCore/workflows/.github/workflows/gradle.yml/badge.svg) 
+![](https://github.com/MohamedWael/RitrofitCore/workflows/.github/workflows/gradle.yml/badge.svg) 
 <a href="https://twitter.com/intent/follow?screen_name=imohamedwael">
         <img src="https://img.shields.io/twitter/follow/imohamedwael?style=social&logo=twitter"
             alt="follow on Twitter"></a> 
